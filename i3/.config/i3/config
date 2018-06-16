@@ -1,0 +1,244 @@
+################################################################################
+#                                Variables                                     #
+################################################################################
+
+set $mod Mod4
+
+#font pango:FontAwesome 11px
+#font pango:Terminus 11px
+font pango:DejaVu Sans Mono 9.5
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
+set $ws1 1:Global
+set $ws2 2:Mail
+set $ws3 3:Dev
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7:Chat
+set $ws8 8:Media
+set $ws9 9:Process
+set $ws10 10
+
+set $gaps_inner 10
+set $border_size 2
+
+set $prefix ~/.config/bin
+set $terminal termite
+set $browser firefox
+set $file_manager $terminal -e ranger -d
+set $fm_alt_start /media/$USER/Data/
+
+################################################################################
+#                                Colors                                        #
+################################################################################
+
+set_from_resource $cborder cursorColor
+set_from_resource $ctext   color15
+set_from_resource $cback   background
+set_from_resource $cindic  color4
+
+#<colorclass>           <border>	<background> <text> <indicator> <child_border>
+client.focused          $cborder	$cborder	$ctext $cindic		$cborder
+client.focused_inactive $cborder	$cback		$ctext $cindic		$cback
+client.unfocused        $cborder	$cback		$ctext $cindic		$cback
+client.urgent			$cborder	$cback		$ctext $cindic		$cback
+
+################################################################################
+#                            Application launcher                              #
+################################################################################
+
+bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -show run -p "Please choose an app:"'
+
+bindsym $mod+Return exec $terminal
+bindsym $mod+p exec $browser
+bindsym $mod+Shift+p exec --no-startup-id "$browser --private-window"
+bindsym $mod+m exec $file_manager ~
+bindsym $mod+Shift+m exec $file_manager $fm_alt_start
+bindsym $mod+Shift+v exec --no-startup-id $prefix/vpn
+bindsym $mod+Shift+x exec --no-startup-id $prefix/system
+bindsym $mod+Shift+h exec --no-startup-id $prefix/hdmi
+
+bindsym $mod+l       exec --no-startup-id vboxmanage startvm Windows
+bindsym $mod+Shift+l exec vboxmanage controlvm Windows acpipowerbutton
+
+bindsym $mod+Shift+o exec --no-startup-id $prefix/edit-vim
+
+################################################################################
+#                               Basic moves                                    #
+################################################################################
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+a focus parent
+bindsym $mod+z focus child
+bindsym $mod+u [urgent=latest] focus
+
+bindsym $mod+Shift+s scratchpad show
+
+bindsym $mod+Shift+q kill
+
+################################################################################
+#                                 Media                                        #
+################################################################################
+
+bindsym XF86AudioRaiseVolume exec $prefix/volume-up
+bindsym XF86AudioLowerVolume exec $prefix/volume-down
+bindsym XF86AudioMute exec $prefix/volume-toggle
+
+bindsym XF86AudioPrev exec $prefix/music-prev
+bindsym XF86AudioNext exec $prefix/music-next
+bindsym XF86AudioPlay exec $prefix/music-toggle
+
+bindsym XF86MonBrightnessUp exec sudo $prefix/brightness-up
+bindsym XF86MonBrightnessDown exec sudo $prefix/brightness-down
+
+bindsym XF86WLAN exec sudo $prefix/wifi-toggle
+bindsym XF86Sleep exec $prefix/lock
+
+bindsym Print exec $prefix/screen-shot
+bindsym Shift+Print exec $prefix/zone-shot
+
+################################################################################
+#                                  Floating                                    #
+################################################################################
+
+floating_modifier $mod
+
+bindsym $mod+space floating toggle
+bindsym $mod+Shift+space sticky toggle
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="(?i)lxappearance"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable
+for_window [class="(?i)thunar"] floating enable
+for_window [class="(?i)mplayer"] floating enable
+for_window [class="(?i)nm-connection-editor"] floating enable
+for_window [title="(?i)ranger"] floating enable, resize set 1280 600, move position center, focus
+
+assign [class="TelegramDesktop"] $ws7
+assign [class="claws-mail"] $ws2
+
+################################################################################
+#                                  Borders                                     #
+################################################################################
+
+gaps inner $gaps_inner
+new_window pixel $border_size
+
+################################################################################
+#                                 Workspaces                                   #
+################################################################################
+
+workspace_auto_back_and_forth yes
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+KP_1 workspace $ws1
+bindsym $mod+KP_2 workspace $ws2
+bindsym $mod+KP_3 workspace $ws3
+bindsym $mod+KP_4 workspace $ws4
+bindsym $mod+KP_5 workspace $ws5
+bindsym $mod+KP_6 workspace $ws6
+bindsym $mod+KP_7 workspace $ws7
+bindsym $mod+KP_8 workspace $ws8
+bindsym $mod+KP_9 workspace $ws9
+bindsym $mod+KP_0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Shift+KP_1 move container to workspace $ws1
+bindsym $mod+Shift+KP_2 move container to workspace $ws2
+bindsym $mod+Shift+KP_3 move container to workspace $ws3
+bindsym $mod+Shift+KP_4 move container to workspace $ws4
+bindsym $mod+Shift+KP_5 move container to workspace $ws5
+bindsym $mod+Shift+KP_6 move container to workspace $ws6
+bindsym $mod+Shift+KP_7 move container to workspace $ws7
+bindsym $mod+Shift+KP_8 move container to workspace $ws8
+bindsym $mod+Shift+KP_9 move container to workspace $ws9
+bindsym $mod+Shift+KP_0 move container to workspace $ws10
+
+################################################################################
+#                               System                                         #
+################################################################################
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exit
+
+################################################################################
+#                               Modes                                          #
+################################################################################
+
+mode "resize" {
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+mode "gaps" {
+		bindsym plus  gaps outer current plus 5
+		bindsym minus gaps outer current minus 5
+		bindsym 0     gaps outer current set 0
+
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+
+bindsym $mod+g mode "gaps"
+
+################################################################################
+#                                Init                                          #
+################################################################################
+
+exec $prefix/launch

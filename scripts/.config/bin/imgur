@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cd $HOME/Pics/
+i=0
+
+if [ ! -d "$1" ]; then
+    mkdir $1
+fi
+
+cd $1
+
+while [ "$i" -le 4 ]; do
+    if [ ! -d "$i" ]; then
+        mkdir "$i"
+        cd $i
+        httrack -s0 imgur.com/r/$1/top/all/page/$i "+imgur.com/r/$1/*" "-imgur.com/r/$1/new*" "-imgur.com/r/$1/top*" "+s.imgur.com/*" "+i.imgur.com/*"
+        cd ..
+    fi
+
+    i=$(($i + 1))
+done

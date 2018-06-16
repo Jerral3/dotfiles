@@ -1,0 +1,21 @@
+#!/bin/bash
+
+INTERNAL="eDP-1"
+EXTERNAL="HDMI-1"
+
+function modes()
+{
+	echo -e "Clone\nLeft\nExternal\nOff"
+}
+
+MODE=$(modes | rofi -dmenu -p "Select mode:")
+
+if [[ $MODE == "Clone" ]]; then
+	xrandr --output $INTERNAL --auto --output $EXTERNAL --auto --same-as $INTERNAL
+elif [[ $MODE == "External" ]]; then
+	xrandr --output $INTERNAL --off --output $EXTERNAL --auto
+elif [[ $MODE == "Off" ]]; then
+	xrandr --output $INTERNAL --auto --output $EXTERNAL --off
+elif [[ $MODE == "Left" ]]; then
+	xrandr --output $INTERNAL --auto --output $EXTERNAL --auto --left-of $INTERNAL
+fi

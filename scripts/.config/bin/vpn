@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ ! -e /proc/sys/net/ipv4/conf/tun0 ]; then
+    vpn-rofi
+else 
+    sudo pkill openvpn
+    rm /tmp/vpn.current
+fi

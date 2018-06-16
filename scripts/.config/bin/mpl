@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mpc play
+termite --title player -e "ncmpcpp -s visualizer" &

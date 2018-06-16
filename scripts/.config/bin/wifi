@@ -1,0 +1,21 @@
+#!/bin/bash
+
+list=$(sudo iwlist wlan0 scan | grep SSID | awk -F'"' '{print $2}')
+wifi=$(echo -e "$list" | rofi -dmenu -p "Select Wi-Fi")
+
+if [ ! "$wifi" ]; then
+    exit 0
+fi
+
+if [ -z "/etc/netctl/$wifi" ]; then
+    exit 0
+fi
+
+pass=$(rofi -password -dmenu -p "  : " )
+
+if [ "$pass" ]; then
+    config="Interface=wlan0\nConnection=wireless\nSecurity=wla\nIP=dhcp\n"
+    config="${config}ESSID='${wifi}'\n"
+    config="${config}Key='${pass}'"
+    echo -e $config | sudo tee "/etc/netctl/$wifi" && sudo netctl-auto enable "$wifi" && sudo netctl switch-to "$wifi"
+fi

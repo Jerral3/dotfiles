@@ -1,0 +1,20 @@
+INTERFACE="wlan0"
+
+wifi_on() {
+	ifconfig $INTERFACE down
+	systemctl start netctl-auto@$INTERFACE
+}
+
+wifi_off() {
+	systemctl stop netctl-auto@$INTERFACE
+}
+
+ON=$(ifconfig | grep $INTERFACE)
+
+if [ -n "$ON" ]; then
+	echo "Switching off"
+	wifi_off
+else
+	echo "Switching on"
+	wifi_on
+fi

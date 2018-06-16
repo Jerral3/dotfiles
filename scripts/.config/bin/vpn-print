@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ -e /tmp/vpn.current ]]; then
+	cat /tmp/vpn.current
+else
+    echo ""
+fi

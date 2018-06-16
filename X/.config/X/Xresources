@@ -1,0 +1,13 @@
+Xft.dpi:        96
+Xft.rgba:       rgb
+Xft.autohint:   0j
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.hintstyle: hintslight
+
+!#include "Xresources.d/urxvt"
+#include "Xresources.d/rofi"
+
+!#include "Xresources.d/taiga"
+!#include "Xresources.d/violet"
+#include "Xresources.d/darkblue"

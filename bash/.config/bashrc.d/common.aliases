@@ -1,0 +1,19 @@
+alias cp="cp -i"
+alias mv="mv -i"
+
+alias ls='ls --color=auto --group-directories-first --time-style=+"%d.%m.%Y %H:%M"  -hFX'
+alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M"  -F'
+alias la='ls -lA --group-directories-first --time-style=+"%d.%m.%Y %H:%M"  -F'
+alias grep='grep --color=tty -d skip'
+
+alias df='df -h'                          # human-readable sizes
+alias dft='df -h --local -x tmpfs -x devtmpfs -T'
+alias free='free -m'                      # show sizes in MB 
+
+alias feh="feh -D 2 -ZzXF"
+alias mysql='mysql --safe-updates'
+
+alias setclip='xclip -selection c'
+alias getclip='xclip -selection clipboard -o'
+
+alias vim="nvim"

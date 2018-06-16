@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function gen_vpn()
+{
+	echo -e "ECL\nPi\nKill"
+}
+
+VPN=$(gen_vpn | rofi -dmenu -p "Select VPN:")
+
+if [[ $VPN == "ECL" ]]; then
+	(cd /etc/openvpn/client/ecl && sudo openvpn --config ecl.ovpn) &
+	echo "ECL" >> /tmp/vpn.current
+elif [[ $VPN == "Pi" ]]; then
+    sudo openvpn --config /etc/openvpn/arch-jerral.conf &
+    echo "Pi" >> /tmp/vpn.current
+else
+	sudo pkill openvpn
+	rm /tmp/vpn.current
+fi

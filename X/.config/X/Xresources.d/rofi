@@ -1,0 +1,10 @@
+rofi.bw:2
+rofi.font:Droid 12
+rofi.fake-transparency:true
+rofi.hide-scrollbar:true
+rofi.no-disable-history:true
+rofi.eh:2
+rofi.lines:5
+rofi.padding:10
+rofi.width:450px
+rofi.yoffset:8

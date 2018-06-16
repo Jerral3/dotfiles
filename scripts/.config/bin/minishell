@@ -1,0 +1,5 @@
+#!/bin/bash
+
+i3-msg exec termite
+sleep 1
+i3-msg floating enable, sticky enable, resize set 400 50, move absolute position 962 708

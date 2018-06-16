@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SAMPLEFOLDER="$HOME/etc/cpbundle"
+
+if [ -z "$1" ]; then
+	PROJECT="default"
+else
+	PROJECT=$1
+fi
+
+mkdir $PROJECT || exit
+cp $SAMPLEFOLDER/main.cpp $PROJECT/main.cpp
+sed -e "/^BIN=$/s/$/$PROJECT/" $SAMPLEFOLDER/Makefile > $PROJECT/Makefile

@@ -1,0 +1,120 @@
+[color]
+background = ${xrdb:background} 
+red        = ${xrdb:color1}
+white      = ${xrdb:color7}
+cyan       = ${xrdb:cursorColor}
+
+[bar/top]
+monitor = eDP-1
+
+width = 100%
+height = 19
+
+background = ${color.background}
+foreground = ${color.white}
+linecolor = ${color.cyan}
+
+border-bottom-size = 2
+border-bottom-color = ${color.cyan}
+
+spacing = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = Droid:size=12;3
+font-1 = FontAwesome5Free:size=12;2
+font-2 = FontAwesome5Free:style=Solid:size=12;2
+font-3 = FontAwesome5Brands:size=12;2
+
+modules-left = network
+modules-center = i3
+modules-right = volume battery clock
+
+tray-position = left
+tray-padding = 5
+
+[module/battery]
+type = internal/battery
+
+battery = BAT1
+poll-interval = 10
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%% (%time%)
+
+format-discharging = <ramp-capacity><label-discharging>
+label-discharging = %percentage%% (%time%)
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+
+time-format = %Hh%M
+
+[module/clock]
+type = internal/date
+date = %a %d %b  %H:%M
+format-padding = 2
+
+click-left = "gsimplecal"
+
+[module/i3]
+type = internal/i3
+
+ws-icon-0 = 1:Global;
+ws-icon-1 = 2:Mail;
+ws-icon-2 = 3:Dev;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7:Chat;
+ws-icon-7 = 8:Media;
+ws-icon-8 = 9:Process;
+
+label-focused = %icon% %index%
+label-focused-padding = 2
+label-focused-foreground = ${color.cyan}
+label-focused-background = ${color.background}
+
+label-unfocused = %icon% %index%
+label-unfocused-padding = 2
+
+label-visible = %icon% %index%
+label-visible-padding = 2
+
+label-urgent = %icon% %index%
+label-urgent-background = ${color.background}
+label-urgent-foreground = ${color.red}
+label-urgent-padding = 2
+
+[module/network]
+type =internal/network
+interface = wlan0
+interval = 3.0
+
+label-connected =  %essid% (%local_ip%)
+format-connected = <label-connected>
+format-connected-padding = 2
+
+label-disconnected = Disconnected
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 2
+
+[module/volume]
+type = internal/volume
+
+format-volume =   <label-volume>
+format-muted = 
+
+mapping = true
+
+; vim:ft=dosini

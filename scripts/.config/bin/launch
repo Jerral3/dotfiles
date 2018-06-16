@@ -1,0 +1,5 @@
+/usr/bin/indicator-kdeconnect &
+polybar top &
+nm-applet &
+telegram-desktop &
+claws-mail &

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+MAX=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+CURRENT=$(cat /sys/class/backlight/intel_backlight/brightness)
+
+NEXT=$((CURRENT + 5*MAX/100))
+
+if [[ $NEXT -gt $MAX ]]; then
+	sudo tee /sys/class/backlight/intel_backlight/brightness <<< $MAX
+else
+	sudo tee /sys/class/backlight/intel_backlight/brightness <<< $NEXT
+fi

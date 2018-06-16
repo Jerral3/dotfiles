@@ -1,0 +1,24 @@
+*.background:#020202
+*.foreground:#94b4c2
+*color0: #020202
+*color1: #272f31
+*color2: #36433c
+*color3: #303c43
+*color4: #38474b
+*color5: #4c5b5f
+*color6: #668694
+*color7: #a8cede
+*color8: #020202
+*color9: #272f31
+*color10: #36433c
+*color11: #303c43
+*color12: #38474b
+*color13: #4c5b5f
+*color14: #668694
+*color15: #a8cede
+
+rofi.color-enabled:true
+rofi.color-normal:#272f31, #94b4c2, #272f31, #94b4c2, #272f31
+rofi.color-urgent:#272f31, #94b4c2, #272f31, #94b4c2, #272f31
+rofi.color-active:#272f31, #94b4c2, #272f31, #94b4c2, #272f31
+rofi.color-window:argb:b0000000, #94b4c2

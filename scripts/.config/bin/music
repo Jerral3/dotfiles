@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mapfile -t songs < <(mpc search -f '%file%' filename '' | fzf -m)
+(( ${#songs[@]} > 0 )) || exit
+printf '%s\n' "${songs[@]}" | mpc -q add
+index=$(mpc playlist | wc -l)
+(( ${#songs[@]} > 1 )) && index=$(( $index - ${#songs[@]} + 1))
+mpc -q play "$index"

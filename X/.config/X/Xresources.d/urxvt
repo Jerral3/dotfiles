@@ -1,0 +1,18 @@
+Urxvt*font: xft:Monospace:size=9
+Urxvt.letterSpace: true
+
+Urxvt*url-launcher: firefox
+
+Urxvt.internalBorder: 15
+Urxvt.externalBorder: 15
+Urxvt.cursorBlink: 1
+Urxvt.scrollBar: off
+
+URxvt.depth:             32
+URxvt.saveLines:         10000
+URxvt*terminalName:      rxvt-unicode-256color
+URxvt*visualBell: false
+
+URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.perl-ext-common: default,clipboard,matcher,keyboard-select

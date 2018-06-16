@@ -1,0 +1,4 @@
+#!/bin/bash
+
+scrot -sm '/home/$USER/usr/Screenshots/%Y.%m.%d_%H%M%S.png'
+
